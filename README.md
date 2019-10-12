@@ -92,6 +92,32 @@ true <i>boolean</i>
 ### Dependecies
 - [oscpack](https://code.google.com/p/oscpack/)
 
+### Windows
+
+Download oscpack and put it in a oscpack subfolder next to the osc.pro file. Open your command line browse to your source folder and build oscpack with cmake. see here for reference:
+
+```bat
+cd oscpack
+cmake -G "Visual Studio 15 2017 Win64" .
+cmake --build . --config Debug
+cmake --build . --config Release
+```
+
+after oscpack was built successfully you can build qml-osc via QtCreator or qmake or cmake.
+
+```bat
+# qmake approach
+qmake osc.pro -spec win32-msvc
+jom qmake_all
+
+# cmake approach
+mkdir ..\build
+cd ..\build
+cmake -G "Visual Studio 15 2017 Win64" ..\qml-osc
+cmake --build . --config Debug
+cmake --build . --config Release
+```
+
 ### Linux
 ```sh
 qmake .
