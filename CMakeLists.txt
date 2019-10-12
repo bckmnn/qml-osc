@@ -24,9 +24,18 @@ ${CMAKE_SOURCE_DIR}/osc_receiver.cpp
 ${CMAKE_SOURCE_DIR}/osc_plugin.h
 ${CMAKE_SOURCE_DIR}/osc_sender.h
 ${CMAKE_SOURCE_DIR}/osc_receiver.h
+${CMAKE_SOURCE_DIR}/qmldir
 )
 
-add_library(osc SHARED ${SOURCES})
-target_link_libraries(osc Qt5::Core Qt5::Qml Qt5::Quick ${LIBS} )
+add_library(OSC SHARED ${SOURCES})
+target_link_libraries(OSC Qt5::Core Qt5::Qml Qt5::Quick ${LIBS} )
+add_custom_command(
+    TARGET OSC
+    POST_BUILD
+    COMMAND
+        ${CMAKE_COMMAND} -E copy
+        ${CMAKE_SOURCE_DIR}/qmldir
+        $<TARGET_FILE_DIR:OSC>/qmldir
+)
 
 
